@@ -7,7 +7,8 @@ The objective of this task was to perform a time-series analysis using SQL to ca
 ## 🛠️ Tools and Methodology
 
 * **Primary Tool:** MySQL / SQL
-* **Dataset:** `oline_orders.csv`
+* **Dataset:** `oline_orders.csv`( Couldn't upload the original dataset as it was more than 25MB).
+  ![Alt Text](https://github.com/azam-1125/TASK-6-Sales-Trend-Analysis-Using-Aggregations/blob/38e7af4c30138e6c8acfcf9e200ef5587e119b10/Screenshot%20(283).png)
 * **Key SQL Concepts Used:**
     * **Time Series Aggregation:** `EXTRACT(YEAR/MONTH FROM ...)` and `GROUP BY` to segment data chronologically.
     * **Revenue Calculation:** `SUM(unitprice * quantity)`.
@@ -27,6 +28,7 @@ COUNT(DISTINCT InvoiceNo) AS order_volume
 from orders.orders
 group by year,month
 ```
+![Alt Text](https://github.com/azam-1125/TASK-6-Sales-Trend-Analysis-Using-Aggregations/blob/38e7af4c30138e6c8acfcf9e200ef5587e119b10/Screenshot%20(279).png)
 ### 2. Revenue per each order:
 ```sql
 select InvoiceNo,
@@ -34,6 +36,7 @@ Sum(Quantity*UnitPrice) as revenue
 from orders.orders
 group by Invoiceno
 ```
+![Alt Text](https://github.com/azam-1125/TASK-6-Sales-Trend-Analysis-Using-Aggregations/blob/38e7af4c30138e6c8acfcf9e200ef5587e119b10/Screenshot%20(282).png)
 ### 3. Total unique orders, Total revenue, and average Revenue per each order:
 ```sql
 select count(distinct InvoiceNo) as unq_orders,
@@ -41,11 +44,13 @@ Sum(Quantity*UnitPrice) as revenue,
 SUM(unitprice * quantity) / COUNT(DISTINCT InvoiceNo) AS avg_revenue_per_order
 from orders.orders
 ```
-### 3. Limit results for specific time periods:
+![Alt Text](https://github.com/azam-1125/TASK-6-Sales-Trend-Analysis-Using-Aggregations/blob/38e7af4c30138e6c8acfcf9e200ef5587e119b10/Screenshot%20(280).png)
+### 4. Limit results for specific time periods:
 ```sql
 select * from orders.orders
 WHERE
     Invoicedate BETWEEN '2010-12-01 08:26:00' AND '2010-12-31 00:00:00'
 order by InvoiceDate asc;
 ```
+![Alt Text](https://github.com/azam-1125/TASK-6-Sales-Trend-Analysis-Using-Aggregations/blob/38e7af4c30138e6c8acfcf9e200ef5587e119b10/Screenshot%20(281).png)
 
